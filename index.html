@@ -2,211 +2,149 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Carta Día de las Madres</title>
+  <title>Carta para Mamá y Abuelita</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: #fff0f5;
+      background: url('https://i.imgur.com/J5Z5Z5Z.jpg') no-repeat center center fixed;
+      background-size: cover;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Dancing Script', cursive;
       overflow: hidden;
     }
 
-    /* Corazones animados */
-    .heart {
-      position: absolute;
-      width: 15px; height: 15px;
-      background: #ff69b4;
-      transform: rotate(45deg);
-      opacity: 0.6;
-      animation: float linear infinite;
+    .letter-container {
+      width: 80%;
+      max-width: 600px;
+      background-color: rgba(255, 245, 240, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      border: 1px solid #e8c4c4;
+      transform: rotate(-1deg);
     }
-    .heart::before, .heart::after {
+
+    .letter-container::before {
       content: "";
       position: absolute;
-      width: 15px; height: 15px;
-      background: #ff69b4;
-      border-radius: 50%;
-    }
-    .heart::before { top: -7.5px; }
-    .heart::after { left: -7.5px; }
-    @keyframes float {
-      0%   { transform: translateY(100vh) rotate(45deg); opacity: 0; }
-      50%  { opacity: 0.6; }
-      100% { transform: translateY(-50px) rotate(45deg); opacity: 0; }
-    }
-
-    /* Animación del sobre */
-    .wrapper {
-      position: relative;
-      width: 500px;
-      height: 400px;
-      perspective: 1000px;
-    }
-
-    .envelope {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-    
-    .flap {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 50%;
-      background: #ff85a2;
-      transform-origin: top;
-      animation: openFlap 1s ease-out forwards;
-      animation-delay: 0.5s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .body {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: #ff99b5;
-    }
-
-    /* Carta interior */
-    .letter {
-      position: absolute;
-      top: 0;
-      width: 95%;
-      height: 95%;
-      background: #fffaf0;
-      padding: 25px;
-      transform: translateY(100%);
-      animation: slideLetter 1s ease-out forwards;
-      animation-delay: 1.5s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px dashed #e8c4c4;
+      pointer-events: none;
       border-radius: 5px;
-      overflow-y: auto;
-    }
-
-    .letter-content {
-      position: relative;
-      color: #5a3e3e;
-      line-height: 1.6;
-      font-size: 16px;
     }
 
     .header {
       text-align: center;
-      font-size: 1.8em;
-      color: #ff69b4;
-      margin: 15px 0;
-      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      color: #d23669;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     .message {
-      font-family: 'Arial', sans-serif;
-      margin: 20px 0;
-    }
-
-    .list {
-      margin: 15px 0;
-      padding-left: 25px;
-    }
-
-    .list li {
-      margin: 10px 0;
-      position: relative;
-      padding-left: 15px;
-    }
-
-    .list li::before {
-      content: "•";
-      color: #ff69b4;
-      position: absolute;
-      left: -15px;
-      font-size: 1.2em;
-    }
-
-    .divider {
-      border: none;
-      height: 2px;
-      background: #ffb3c6;
-      margin: 25px auto;
-      width: 50%;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 1.8;
+      color: #555;
+      margin: 30px 0;
     }
 
     .signature {
       text-align: center;
-      margin: 25px 0;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.6em;
-      color: #ff69b4;
+      font-size: 1.8em;
+      color: #d23669;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b81;
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: float 6s linear infinite;
+    }
+
+    .heart:before, .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b81;
+      border-radius: 50%;
+    }
+
+    .heart:before { top: -10px; }
+    .heart:after { left: -10px; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
 
     .date {
       text-align: right;
-      color: #a86a6a;
-      margin-bottom: 15px;
-      font-size: 0.9em;
-    }
-
-    @keyframes openFlap {
-      from { transform: rotateX(0deg); }
-      to   { transform: rotateX(-180deg); }
-    }
-    
-    @keyframes slideLetter {
-      from { transform: translateY(100%); }
-      to   { transform: translateY(-10px); }
+      color: #888;
+      font-size: 1em;
+      margin-bottom: 20px;
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script>
-    // Generar corazones
-    for (let i = 0; i < 25; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.style.left = Math.random() * 100 + 'vw';
-      h.style.animationDuration = 5 + Math.random() * 5 + 's';
-      h.style.width = h.style.height = 10 + Math.random() * 15 + 'px';
-      document.body.appendChild(h);
-    }
+  <div class="hearts" id="hearts"></div>
+  
+  <div class="letter-container">
+    <div class="date" id="fecha"></div>
+    <h1 class="header">✨ ¡Feliz Día de las Madres! ✨</h1>
+    
+    <div class="message">
+      <p>"Mamá y Abuelita, hoy celebro el amor más grande que conozco: el de ustedes dos.</p>
+      
+      <p>Mamá, por ser mi refugio y mi ejemplo.<br>
+      Abuelita, por ser mi raíz llena de ternura y sabiduría.</p>
 
-    // Actualizar fecha
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('fecha').innerText = new Date().toLocaleDateString('es-ES', options);
-  </script>
+      <p>Juntas han tejido mi vida con bendiciones, risas y calor de hogar.</p>
+    </div>
 
-  <div class="wrapper">
-    <div class="envelope">
-      <div class="flap"></div>
-      <div class="body"></div>
-      <div class="letter">
-        <div class="letter-content">
-          <div class="date" id="fecha"></div>
-          <h1 class="header">✨ ¡Feliz Día de las Madres! ✨</h1>
-          
-          <div class="message">
-            <p>"Mamá y Abuelita, hoy celebro el amor más grande que conozco: el de ustedes dos.</p>
-            
-            <ul class="list">
-              <li>Mamá, por ser mi refugio y mi ejemplo.</li>
-              <li>Abuelita, por ser mi raíz llena de ternura y sabiduría.</li>
-            </ul>
-
-            <p>Juntas han tejido mi vida con bendiciones, risas y calor de hogar.</p>
-            
-            <hr class="divider">
-
-            <p class="signature">¡Las amo hoy, siempre y por encima de todo!<br>💐💖</p>
-          </div>
-        </div>
-      </div>
+    <div class="signature">
+      ¡Las amo hoy, siempre y por encima de todo!<br>
+      💐💖
     </div>
   </div>
+
+  <script>
+    // Fecha actual
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('fecha').innerText = new Date().toLocaleDateString('es-ES', options);
+
+    // Corazones flotantes
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.width = heart.style.height = (15 + Math.random() * 20) + 'px';
+      heartsContainer.appendChild(heart);
+    }
+  </script>
 </body>
 </html>
